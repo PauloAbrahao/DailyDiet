@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import {View, Text} from "react-native";
+import styled, {css} from "styled-components";
+import {Text, TouchableOpacity} from "react-native";
 import {ArrowUpRight} from "phosphor-react-native";
 
-export const Container = styled(View)`
+export const Container = styled(TouchableOpacity)`
   background-color: ${({theme}) => theme.COLORS.GREEN_LIGHT};
   width: 100%;
   height: 120px;
@@ -14,22 +14,26 @@ export const Container = styled(View)`
 `;
 
 export const Percentage = styled(Text)`
-  font-size: ${({theme}) => theme.FONT_SIZE.XL2}px;
-  font-family: ${({theme}) => theme.FONT_FAMILY.BOLD};
-  color: ${({theme}) => theme.COLORS.GRAY_1};
+  ${({theme}) => css`
+    font-size: ${theme.FONT_SIZE.XL2}px;
+    font-family: ${theme.FONT_FAMILY.BOLD};
+    color: ${theme.COLORS.GRAY_1};
+  `};
 `;
 
 export const Title = styled(Text)`
-  font-size: ${({theme}) => theme.FONT_SIZE.SM2}px;
-  font-family: ${({theme}) => theme.FONT_FAMILY.REGULAR};
-  color: ${({theme}) => theme.COLORS.GRAY_1};
+  ${({theme}) => css`
+    font-size: ${theme.FONT_SIZE.SM2}px;
+    font-family: ${theme.FONT_FAMILY.REGULAR};
+    color: ${theme.COLORS.GRAY_1};
+  `};
 `;
 
 export const Icon = styled(ArrowUpRight).attrs(({theme}) => ({
   size: 24,
   color: theme.COLORS.GREEN_DARK,
 }))`
-position: absolute;
+  position: absolute;
   right: 9px;
   top: 9px;
   align-self: center;
