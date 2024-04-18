@@ -1,9 +1,12 @@
 import {ThemeType} from "styled-components";
 import "styled-components/native";
-import {theme} from "@config/theme";
 
 export type ButtonProps = {
   title: string;
+  icon?: string;
+  buttonColor?: string;
+  iconColor?: string;
+  onPress: () => void;
 };
 
 export type MealsCardProps = {
@@ -40,7 +43,7 @@ export type CardStyleProps = {
   theme?: {
     COLORS?: ThemeType;
   };
-  color?: string;
+  color?: string | keyof ThemeType;
   width?: number;
   height?: number;
 };

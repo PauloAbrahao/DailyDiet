@@ -4,7 +4,7 @@ import {Text, View} from "react-native";
 export const Container = styled(View)`
   flex-direction: column;
   flex: 1;
-  margin-top: 20px;
+  /* margin-top: 10px; */
 `;
 
 export const Date = styled(Text)`
