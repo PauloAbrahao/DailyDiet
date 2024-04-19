@@ -5,28 +5,20 @@ import {ArrowLeft} from "phosphor-react-native";
 
 export const Container = styled(View)`
   flex: 1;
-  background-color: ${({theme}) => theme.COLORS.GREEN_LIGHT};
+  background-color: ${({theme}) => theme.COLORS.GRAY_5};
 `;
 
 export const Header = styled(SafeAreaView)`
-  height: 180px;
+  height: 120px;
   align-items: center;
   justify-content: center;
-  background-color: ${({theme}) => theme.COLORS.GREEN_LIGHT};
-  flex-direction: column;
-`;
-
-export const Percentage = styled(Text)`
-  ${({theme}) => css`
-    font-size: ${theme.FONT_SIZE.XL2}px;
-    font-family: ${theme.FONT_FAMILY.BOLD};
-    color: ${theme.COLORS.GRAY_1};
-  `};
+  background-color: ${({theme}) => theme.COLORS.GRAY_5};
+  flex-direction: row;
 `;
 
 export const Title = styled(Text)<{bold?: string; bottom?: number}>`
   ${({theme, bold}) => css`
-    font-size: ${theme.FONT_SIZE.SM2}px;
+    font-size: ${theme.FONT_SIZE.LG}px;
     font-family: ${bold ? theme.FONT_FAMILY.BOLD : theme.FONT_FAMILY.REGULAR};
     color: ${theme.COLORS.GRAY_1};
   `};
@@ -43,19 +35,13 @@ export const Body = styled(View)`
   padding-top: 35px;
 `;
 
-export const Row = styled(View)`
-  flex-direction: row;
-  justify-content: space-between;
-  width: 90%;
-`;
-
 export const BackButton = styled(TouchableOpacity)`
   position: absolute;
-  top: 60px;
+  top: 70px;
   left: 20px;
 `;
 
 export const Icon = styled(ArrowLeft).attrs(({theme}) => ({
   size: 24,
-  color: theme.COLORS.GREEN_DARK,
+  color: theme.COLORS.GRAY_2,
 }))``;

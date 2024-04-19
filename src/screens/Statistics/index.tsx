@@ -28,7 +28,7 @@ export const Statistics = () => {
         <Title>das refeições dentro da dieta</Title>
       </Header>
       <Body>
-        <Title bold="bold" bottom={30}>
+        <Title bold="bold" bottom={10}>
           Estatísticas gerais
         </Title>
         <Card

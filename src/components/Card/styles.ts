@@ -1,14 +1,23 @@
-import styled, {css} from "styled-components";
+import styled, {ThemeType, css} from "styled-components";
 import {Text, View} from "react-native";
 import {CardStyleProps} from "src/@types";
+
+const handleCardColor = (theme: ThemeType, color: string | undefined) => {
+  if (color === "GREEN_LIGHT") {
+    return theme.COLORS.GREEN_LIGHT;
+  } else if (color === "RED_LIGHT") {
+    return theme.COLORS.RED_LIGHT;
+  } else {
+    return theme.COLORS.GRAY_7;
+  }
+};
 
 export const Container = styled(View)<CardStyleProps>`
   margin-top: 15px;
   width: ${({width}) => (width ? width : 90)}%;
   height: ${({height}) => (height ? height : 100)}px;
   border-radius: 8px;
-  background-color: ${({theme, color}) =>
-    color ? theme.COLORS[color] : theme.COLORS.GRAY_6};
+  background-color: ${({theme, color}) => handleCardColor(theme, color)};
   justify-content: center;
   align-items: center;
   gap: 10px;
