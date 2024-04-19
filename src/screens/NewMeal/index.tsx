@@ -1,6 +1,5 @@
 import React from "react";
 import {Body, Container, Header, Title, Icon, BackButton} from "./styles";
-// import {NewMealProps} from "src/@types";
 import {useNavigation} from "@react-navigation/native";
 import {Forms} from "@components/Forms";
 

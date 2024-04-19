@@ -6,6 +6,8 @@ export type ButtonProps = {
   icon?: string;
   buttonColor?: string;
   iconColor?: string;
+  selectedColor?: string;
+  isSelected?: boolean;
   onPress: () => void;
 };
 
@@ -28,6 +30,10 @@ export type StatisticsProps = {
   percentage: string;
 };
 
+export type FeedbackProps = {
+  isOnDiet: boolean;
+};
+
 export type CardProps = {
   theme?: {
     COLORS?: ThemeType;
@@ -40,10 +46,7 @@ export type CardProps = {
 };
 
 export type CardStyleProps = {
-  theme?: {
-    COLORS?: ThemeType;
-  };
-  color?: string | keyof ThemeType;
+  color?: string;
   width?: number;
   height?: number;
 };

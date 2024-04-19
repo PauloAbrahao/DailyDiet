@@ -1,13 +1,55 @@
-import styled, {css} from "styled-components";
+import styled, {ThemeType, css} from "styled-components";
 import {TouchableOpacity, Text, View} from "react-native";
 import {Plus} from "phosphor-react-native";
 
-export const Container = styled(TouchableOpacity)<{color?: string}>`
+const handleButtonColor = (
+  theme: ThemeType,
+  selectedColor: string | undefined,
+  color: string | undefined,
+  isSelected: boolean | undefined
+) => {
+  if (isSelected && selectedColor === "GREEN_LIGHT") {
+    return theme.COLORS.GREEN_LIGHT;
+  } else if (isSelected && selectedColor === "RED_LIGHT") {
+    return theme.COLORS.RED_LIGHT;
+  }
+  if (color === "GRAY_6") {
+    return theme.COLORS.GRAY_6;
+  } else {
+    return theme.COLORS.GRAY_2;
+  }
+};
+
+const handleBorderColor = (
+  theme: ThemeType,
+  selectedColor: string | undefined,
+  isSelected: boolean | undefined
+) => {
+  if (isSelected && selectedColor === "GREEN_LIGHT") {
+    return theme.COLORS.GREEN_DARK;
+  } else if (isSelected && selectedColor === "RED_LIGHT") {
+    return theme.COLORS.RED_DARK;
+  }
+  return;
+};
+
+export const Container = styled(TouchableOpacity)<{
+  color?: string;
+  isSelected?: boolean;
+  selectedColor?: string;
+}>`
   width: 100%;
   flex-direction: row;
-  background-color: ${({color, theme}) =>
-    color === "GRAY_6" ? theme.COLORS.GRAY_6 : theme.COLORS.GRAY_2};
   border-radius: 6px;
+  border-style: solid;
+
+  background-color: ${({color, theme, selectedColor, isSelected}) =>
+    handleButtonColor(theme, selectedColor, color, isSelected)};
+  border-width: ${({selectedColor, isSelected}) =>
+    isSelected && selectedColor ? 1 : 0}px;
+  border-color: ${({theme, selectedColor, isSelected}) =>
+    handleBorderColor(theme, selectedColor, isSelected)};
+
   height: 60px;
   justify-content: center;
   align-items: center;
