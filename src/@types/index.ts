@@ -14,16 +14,20 @@ export type ButtonProps = {
 export type MealsCardProps = {
   time: string;
   title: string;
+  isOnDiet: boolean;
 };
 
-type MealItem = {
+export type Meal = {
+  name: string;
+  description: string;
+  date: string;
   time: string;
-  title: string;
+  isOnDiet: boolean;
 };
 
 export type MealSection = {
   date: string;
-  data: MealItem[];
+  data: Meal;
 };
 
 export type StatisticsProps = {
@@ -49,4 +53,14 @@ export type CardStyleProps = {
   color?: string;
   width?: number;
   height?: number;
+};
+
+export type NewMealProps = {
+  meal: {
+    name: string;
+    description: string;
+    date: string;
+    time: string;
+    isOnDiet: boolean;
+  }[];
 };

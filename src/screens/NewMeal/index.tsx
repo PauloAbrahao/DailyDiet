@@ -12,7 +12,7 @@ export const NewMeal = () => {
           <Icon />
         </BackButton>
 
-        <Title bold="bold">Nova Refeição</Title>
+        <Title bold="bold">Nova refeição</Title>
       </Header>
       <Body>
         <Forms />

@@ -31,11 +31,11 @@ export const Separator = styled(View)`
   background-color: ${({theme}) => theme.COLORS.GRAY_4};
 `;
 
-export const Index = styled(View)`
+export const Index = styled(View)<{isOnDiet: boolean}>`
   width: 14px;
   height: 14px;
   border-radius: 7px;
   position: absolute;
   right: 15px;
-  background-color: ${({theme}) => theme.COLORS.RED_MID};
+  background-color: ${({theme, isOnDiet}) => isOnDiet ? theme.COLORS.GREEN_MID : theme.COLORS.RED_MID};
 `;
