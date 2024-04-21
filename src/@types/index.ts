@@ -12,8 +12,10 @@ export type ButtonProps = {
 };
 
 export type MealsCardProps = {
-  time: string;
   title: string;
+  description: string;
+  date: string;
+  time: string;
   isOnDiet: boolean;
 };
 

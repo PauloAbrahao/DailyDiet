@@ -1,3 +1,5 @@
+import {MealsCardProps} from ".";
+
 export declare global {
   namespace ReactNavigation {
     interface RootParamList {
@@ -9,6 +11,7 @@ export declare global {
       feedback: {
         isOnDiet: boolean | null;
       };
+      meal: MealsCardProps;
     }
   }
 }
