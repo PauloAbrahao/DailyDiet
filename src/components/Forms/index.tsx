@@ -11,6 +11,7 @@ import {
 } from "./styles";
 import {Button} from "@components/Button";
 import {useNavigation} from "@react-navigation/native";
+import {createMeal} from "@storage/meal/createMeal";
 
 export const Forms = () => {
   const navigation = useNavigation();
@@ -20,16 +21,33 @@ export const Forms = () => {
   const [date, setDate] = React.useState<string>("");
   const [time, setTime] = React.useState<string>("");
   const [isOnDiet, setIsOnDiet] = React.useState<boolean | null>(null);
+  const [error, setError] = React.useState<string | null>("");
 
-  const handleForms = () => {
-    navigation.navigate("feedback", {
-      isOnDiet: isOnDiet
-    });
+  const handleForms = async () => {
+    if (
+      name.trim().length > 0 &&
+      description.trim().length > 0 &&
+      date.trim().length > 0 &&
+      time.trim().length > 0 &&
+      isOnDiet !== null
+    ) {
+      await createMeal({date, name, description, time, isOnDiet});
+      navigation.navigate("feedback", {
+        isOnDiet: isOnDiet,
+      });
+    } else {
+      setError("Todos os campos devem ser preenchidos.");
+    }
   };
 
   return (
     <Container>
-      <AreaToScroll contentContainerStyle={{flexGrow: 1, gap: 30}}>
+      <AreaToScroll
+        contentContainerStyle={{
+          flexGrow: 1,
+          gap: 30,
+        }}
+      >
         <LabelAndInput>
           <Label>Nome</Label>
           <InputArea value={name} onChangeText={setName} />
@@ -87,6 +105,15 @@ export const Forms = () => {
             </LabelAndInput>
           </DateTime>
         </ButtonsContainer>
+        {error && (
+          <Label
+            style={{color: "red", marginTop: 10}}
+            weight="normal"
+            align="center"
+          >
+            {error}
+          </Label>
+        )}
         <RegisterMeal>
           <Button
             title="Cadastrar refeição"

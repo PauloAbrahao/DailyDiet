@@ -1,42 +1,65 @@
-import React from "react";
-import {Container, Date} from "./styles";
-import {SectionList} from "react-native";
+import React, {useCallback} from "react";
+import {Container, Date, Label} from "./styles";
+import {Alert, SectionList} from "react-native";
 import {MealsCard} from "@components/MealCard";
-import {MealSection} from "src/@types";
-
-const DATA: MealSection[] = [
-  {
-    date: "12.08.22",
-    data: [
-      {time: "20:00", title: "X-tudo"},
-      {time: "16:00", title: "Whey protein com leite"},
-      {time: "12:30", title: "Salada cesar com frango grelhado"},
-      {time: "09:30", title: "Vitamina de banana com abacate"},
-    ],
-  },
-  {
-    date: "11.08.22",
-    data: [
-      {time: "20:00", title: "X-tudo"},
-      {time: "16:00", title: "Whey protein com leite"},
-      {time: "12:30", title: "Salada cesar com frango grelhado"},
-      {time: "09:30", title: "Vitamina de banana com abacate"},
-    ],
-  },
-];
+import {mealsGetAll} from "@storage/meal/mealsGetAll";
+import {useFocusEffect} from "@react-navigation/native";
+import { Meal, MealSection } from "src/@types";
 
 export const MealsList = () => {
+  const [meals, setMeals] = React.useState<MealSection[]>([]);
+
+  async function fetchMeals() {
+    try {
+      const data: Meal[] = await mealsGetAll();
+
+      const groupedMeals: {[key: string]: Meal[]} | MealSection[] = {};
+      data.forEach((meal) => {
+        if (!groupedMeals[meal.date]) {
+          groupedMeals[meal.date] = [];
+        }
+        groupedMeals[meal.date].push(meal);
+      });
+
+      const sectionData: MealSection[] = Object.keys(groupedMeals).map(
+        (date) => ({
+          date: date,
+          data: groupedMeals[date],
+    
+        })
+      );
+
+      setMeals(sectionData);
+    } catch (error) {
+      Alert.alert("Refeições", "Não foi possível carregar suas refeições.");
+      console.log(error);
+    }
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchMeals();
+    }, [])
+  );
+
   return (
     <Container>
       <SectionList
         showsVerticalScrollIndicator={false}
         scrollEnabled={true}
-        sections={DATA}
-        keyExtractor={(item, index) => item.title + index}
+        sections={meals}
+        keyExtractor={(item, index) => item.date + index}
         renderItem={({item}) => (
-          <MealsCard time={item.time} title={item.title} />
+          <MealsCard
+            time={item.time}
+            title={item.name}
+            isOnDiet={item.isOnDiet}
+          />
         )}
-        renderSectionHeader={({ section: { date } }) => <Date>{date}</Date>}
+        renderSectionHeader={({section: {date}}) => <Date>{date}</Date>}
+        ListEmptyComponent={() => (
+          <Label>Ainda não há refeições cadastradas.</Label>
+        )}
       />
     </Container>
   );

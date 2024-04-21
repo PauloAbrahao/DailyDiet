@@ -20,12 +20,13 @@ export const LabelAndInput = styled(View)<{width?: number}>`
   width: ${({width}) => (width ? width : 100)}%;
 `;
 
-export const Label = styled(Text)`
+export const Label = styled(Text) <{ weight?: string;  align?: string}>`
   ${({theme}) => css`
     color: ${theme.COLORS.GRAY_2};
     font-size: ${theme.FONT_SIZE.SM2}px;
   `};
-  font-weight: bold;
+  text-align: ${({align}) => (align ? align : "left")};
+  font-weight: ${({weight}) => (weight ? weight : "bold")};
   margin-bottom: 5px;
 `;
 
