@@ -7,9 +7,13 @@ import {
   Icon,
   BackButton,
   MealInfo,
+  Index,
+  ButtonContainer,
+  TypeContainer,
 } from "./styles";
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {MealsCardProps} from "src/@types";
+import {Button} from "@components/Button";
 
 export const Meal = () => {
   const route = useRoute();
@@ -18,8 +22,8 @@ export const Meal = () => {
 
   const navigation = useNavigation();
   return (
-    <Container>
-      <Header>
+    <Container isOnDiet={isOnDiet}>
+      <Header isOnDiet={isOnDiet}>
         <BackButton onPress={() => navigation.goBack()}>
           <Icon />
         </BackButton>
@@ -39,10 +43,25 @@ export const Meal = () => {
         <MealInfo bottom={15} size={16}>
           {date} às {time}
         </MealInfo>
-        <MealInfo size={14}>
-          {isOnDiet ? "dentro da dieta" : "fora da dieta"}
-        </MealInfo>
+
+        <TypeContainer size={14} background={true}>
+          <Index isOnDiet={isOnDiet} />
+          <MealInfo size={14} background={true}>
+            {isOnDiet ? "dentro da dieta" : "fora da dieta"}
+          </MealInfo>
+        </TypeContainer>
       </Body>
+      <ButtonContainer>
+        <Button title="Editar refeição" onPress={() => {}} icon="edit" />
+        <Button
+          title="Excluir refeição"
+          onPress={() => {}}
+          icon="trash"
+          buttonColor="transparent"
+          selectedColor="GRAY_1"
+          isSelected={true}
+        />
+      </ButtonContainer>
     </Container>
   );
 };
