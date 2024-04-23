@@ -15,6 +15,7 @@ export async function createMeal(newMeal: Meal) {
 
     const mealAlreadyExists: boolean = storedMeals.some(
       (meal) =>
+        meal.id === newMeal.id &&
         meal.name === newMeal.name &&
         meal.description === newMeal.description &&
         meal.date === newMeal.date &&

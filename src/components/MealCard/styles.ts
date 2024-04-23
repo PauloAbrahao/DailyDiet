@@ -1,7 +1,7 @@
 import styled, {css} from "styled-components";
-import {Text, View} from "react-native";
+import {Text, TouchableOpacity, View} from "react-native";
 
-export const Container = styled(View)`
+export const Container = styled(TouchableOpacity)`
   flex-direction: row;
   border: 1px solid ${({theme}) => theme.COLORS.GRAY_5};
   border-radius: 6px;

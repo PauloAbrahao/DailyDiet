@@ -1,6 +1,6 @@
 import styled, {ThemeType, css} from "styled-components";
 import {TouchableOpacity, Text, View} from "react-native";
-import {Plus} from "phosphor-react-native";
+import {PencilSimpleLine, Plus, Trash} from "phosphor-react-native";
 
 const handleButtonColor = (
   theme: ThemeType,
@@ -15,6 +15,8 @@ const handleButtonColor = (
   }
   if (color === "GRAY_6") {
     return theme.COLORS.GRAY_6;
+  } else if (color === "transparent") {
+    return "transparent";
   } else {
     return theme.COLORS.GRAY_2;
   }
@@ -29,6 +31,8 @@ const handleBorderColor = (
     return theme.COLORS.GREEN_DARK;
   } else if (isSelected && selectedColor === "RED_LIGHT") {
     return theme.COLORS.RED_DARK;
+  } else if (selectedColor === "GRAY_1") {
+    return theme.COLORS.GRAY_1;
   }
   return;
 };
@@ -43,12 +47,16 @@ export const Container = styled(TouchableOpacity)<{
   border-radius: 6px;
   border-style: solid;
 
-  background-color: ${({color, theme, selectedColor, isSelected}) =>
-    handleButtonColor(theme, selectedColor, color, isSelected)};
-  border-width: ${({selectedColor, isSelected}) =>
-    isSelected && selectedColor ? 1 : 0}px;
-  border-color: ${({theme, selectedColor, isSelected}) =>
-    handleBorderColor(theme, selectedColor, isSelected)};
+  ${({theme, color, selectedColor, isSelected}) => css`
+    background-color: ${handleButtonColor(
+      theme,
+      selectedColor,
+      color,
+      isSelected
+    )};
+    border-width: ${isSelected && selectedColor ? 1 : 0}px;
+    border-color: ${handleBorderColor(theme, selectedColor, isSelected)};
+  `};
 
   height: 60px;
   justify-content: center;
@@ -75,6 +83,20 @@ export const ButtonIcon = styled(View)<{color?: string}>`
 export const PlusIcon = styled(Plus).attrs(({theme}) => ({
   size: 19,
   color: theme.COLORS.WHITE,
+}))`
+  align-items: center;
+`;
+
+export const EditIcon = styled(PencilSimpleLine).attrs(({theme}) => ({
+  size: 18,
+  color: theme.COLORS.WHITE,
+}))`
+  align-items: center;
+`;
+
+export const TrashIcon = styled(Trash).attrs(({theme}) => ({
+  size: 18,
+  color: theme.COLORS.GRAY_1,
 }))`
   align-items: center;
 `;

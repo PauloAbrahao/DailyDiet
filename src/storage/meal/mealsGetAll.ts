@@ -6,6 +6,8 @@ export async function mealsGetAll() {
   try {
     const storage = await AsyncStorage.getItem(MEAL_COLLECTION);
 
+    console.log('storage', storage);
+
     const meals = storage ? JSON.parse(storage) : [];
 
     return meals;

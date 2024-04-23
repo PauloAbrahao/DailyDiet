@@ -12,17 +12,30 @@ export type ButtonProps = {
 };
 
 export type MealsCardProps = {
-  time: string;
+  id: string;
   title: string;
+  description: string;
+  date: string;
+  time: string;
   isOnDiet: boolean;
 };
 
 export type Meal = {
+  id: string;
   name: string;
   description: string;
   date: string;
   time: string;
   isOnDiet: boolean;
+};
+
+export type FormProps = {
+  id_props: string;
+  name_props: string;
+  description_props: string;
+  date_props: string;
+  time_props: string;
+  isOnDiet_props: boolean;
 };
 
 export type MealSection = {
@@ -63,4 +76,9 @@ export type NewMealProps = {
     time: string;
     isOnDiet: boolean;
   }[];
+};
+
+export type ModalProps = {
+  onCancel: () => void;
+  onRemove: () => void;
 };

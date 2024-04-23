@@ -2,14 +2,35 @@ import React from "react";
 
 import {Container, Index, Separator, Time, Title} from "./styles";
 import {MealsCardProps} from "src/@types";
+import {useNavigation} from "@react-navigation/native";
 
-export const MealsCard = ({time, title, isOnDiet}: MealsCardProps) => {
+export const MealsCard = ({
+  id,
+  title,
+  description,
+  date,
+  time,
+  isOnDiet,
+}: MealsCardProps) => {
+  const navigation = useNavigation();
+
+  const handleNavigation = () => {
+    navigation.navigate("meal", {
+      id: id,
+      title: title,
+      description: description,
+      date: date,
+      time: time,
+      isOnDiet: isOnDiet,
+    });
+  };
+
   return (
-    <Container>
+    <Container onPress={handleNavigation}>
       <Time>{time}</Time>
       <Separator />
       <Title numberOfLines={1}>{title}</Title>
-      <Index isOnDiet={isOnDiet}/>
+      <Index isOnDiet={isOnDiet} />
     </Container>
   );
 };
