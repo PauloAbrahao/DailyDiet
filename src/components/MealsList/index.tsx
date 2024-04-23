@@ -51,6 +51,7 @@ export const MealsList = () => {
         keyExtractor={(item, index) => item.date + index}
         renderItem={({item}) => (
           <MealsCard
+            id={item.id}
             title={item.name}
             description={item.description}
             date={item.date}

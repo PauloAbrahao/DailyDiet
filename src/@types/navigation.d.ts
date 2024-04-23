@@ -7,7 +7,14 @@ export declare global {
       statistics: {
         percentage: string;
       };
-      newMeal: undefined;
+      newMeal: {
+        id?: string;
+        name?: string;
+        description?: string;
+        date?: string;
+        time?: string;
+        isOnDiet?: boolean;
+      };
       feedback: {
         isOnDiet: boolean | null;
       };

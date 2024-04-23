@@ -67,7 +67,7 @@ export const TypeContainer = styled(View)<{
 }>`
   ${({theme, background}) => css`
     background-color: ${background ? theme.COLORS.GRAY_6 : "transparent"};
-    width: ${background ? "160px" : "auto"};
+    width: ${background ? "155px" : "auto"};
     text-align: ${background ? "auto" : "left"};
     padding: ${background ? "9px 15px" : 0};
     border-radius: ${background ? 65 : 0}px;
@@ -88,8 +88,8 @@ export const MealInfo = styled(Text)<{
     font-family: ${bold ? theme.FONT_FAMILY.BOLD : theme.FONT_FAMILY.REGULAR};
     color: ${theme.COLORS.GRAY_1};
     margin-bottom: ${bottom ? bottom : 0}px;
-    left: ${background ? 15 : 0}px;
-    top: ${background ? 0 : 5}px;
+    left: ${background ? 17 : 0}px;
+    top: ${background ? -1 : 5}px;
   `};
   position: relative;
 `;
@@ -97,7 +97,7 @@ export const MealInfo = styled(Text)<{
 export const Index = styled(View)<{isOnDiet: boolean}>`
   width: 8px;
   height: 8px;
-  left: 15px;
+  left: 17px;
   border-radius: 7px;
   position: absolute;
   background-color: ${({theme, isOnDiet}) =>

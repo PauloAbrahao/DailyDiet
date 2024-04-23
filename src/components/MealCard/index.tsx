@@ -5,6 +5,7 @@ import {MealsCardProps} from "src/@types";
 import {useNavigation} from "@react-navigation/native";
 
 export const MealsCard = ({
+  id,
   title,
   description,
   date,
@@ -15,6 +16,7 @@ export const MealsCard = ({
 
   const handleNavigation = () => {
     navigation.navigate("meal", {
+      id: id,
       title: title,
       description: description,
       date: date,

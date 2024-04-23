@@ -1,11 +1,34 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 import {Container, Percentage, Title, Icon} from "./styles";
-import {useNavigation} from "@react-navigation/native";
+import {useFocusEffect, useNavigation} from "@react-navigation/native";
+import {Meal} from "src/@types";
+import {mealsGetAll} from "@storage/meal/mealsGetAll";
 
 export const PercentageCard = () => {
   const navigation = useNavigation();
-  const [percentage, setPercentage] = React.useState<string>("90,86%");
+  const [percentage, setPercentage] = React.useState<string>("0%");
+
+  useFocusEffect(useCallback(() => {
+    const calculateDietPercentage = async () => {
+      try {
+        const storedMeals: Meal[] = await mealsGetAll();
+        if (storedMeals.length === 0) {
+          return;
+        }
+
+        const totalMeals = storedMeals.length;
+        const dietMeals = storedMeals.filter((meal) => meal.isOnDiet).length;
+
+        const dietPercentage = (dietMeals / totalMeals) * 100;
+        setPercentage(`${dietPercentage.toFixed(2)}%`);
+      } catch (error) {
+        console.error("Error calculating diet percentage:", error);
+      }
+    };
+
+    calculateDietPercentage();
+  }, []));
 
   return (
     <Container

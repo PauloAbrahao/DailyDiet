@@ -14,13 +14,41 @@ import {
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {MealsCardProps} from "src/@types";
 import {Button} from "@components/Button";
+import {removeMeal} from "@storage/meal/removeMeal";
+import {Modal} from "@components/Modal";
 
 export const Meal = () => {
   const route = useRoute();
-  const {title, description, date, time, isOnDiet} =
+  const navigation = useNavigation();
+  const [showModal, setShowModal] = React.useState(false);
+  const {id, title, description, date, time, isOnDiet} =
     route.params as MealsCardProps;
 
-  const navigation = useNavigation();
+  const handleEditMeal = () => {
+    navigation.navigate("newMeal", {
+      id,
+      name: title,
+      description,
+      date,
+      time,
+      isOnDiet,
+    });
+  };
+
+  const handleRemoveMeal = () => {
+    setShowModal(true);
+  };
+
+  const handleCancel = () => {
+    setShowModal(false);
+  };
+
+  const handleConfirmDelete = async () => {
+    await removeMeal(id);
+    setShowModal(false);
+    navigation.goBack();
+  };
+
   return (
     <Container isOnDiet={isOnDiet}>
       <Header isOnDiet={isOnDiet}>
@@ -52,16 +80,20 @@ export const Meal = () => {
         </TypeContainer>
       </Body>
       <ButtonContainer>
-        <Button title="Editar refeição" onPress={() => {}} icon="edit" />
+        <Button title="Editar refeição" onPress={handleEditMeal} icon="edit" />
         <Button
           title="Excluir refeição"
-          onPress={() => {}}
+          onPress={handleRemoveMeal}
           icon="trash"
           buttonColor="transparent"
           selectedColor="GRAY_1"
           isSelected={true}
         />
       </ButtonContainer>
+
+      {showModal && (
+        <Modal onCancel={handleCancel} onRemove={handleConfirmDelete} />
+      )}
     </Container>
   );
 };
