@@ -43,7 +43,7 @@ export const PercentageCard = () => {
         })
       }
     >
-      <Icon />
+      <Icon percentage={percentage}/>
       <Percentage>{percentage}%</Percentage>
       <Title>das refeições dentro da dieta</Title>
     </Container>

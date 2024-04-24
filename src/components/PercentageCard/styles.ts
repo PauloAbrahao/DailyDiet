@@ -2,6 +2,10 @@ import styled, {css} from "styled-components";
 import {Text, TouchableOpacity} from "react-native";
 import {ArrowUpRight} from "phosphor-react-native";
 
+interface IconProps {
+  percentage: number;
+}
+
 export const Container = styled(TouchableOpacity)<{percentage: number}>`
   background-color: ${({theme, percentage}) =>
     percentage >= 50 ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
@@ -30,12 +34,14 @@ export const Title = styled(Text)`
   `};
 `;
 
-export const Icon = styled(ArrowUpRight).attrs(({theme}) => ({
+export const Icon = styled(ArrowUpRight)<IconProps>((props) => ({
   size: 24,
-  color: theme.COLORS.GREEN_DARK,
-}))`
-  position: absolute;
-  right: 9px;
-  top: 9px;
-  align-self: center;
-`;
+  color:
+    props.percentage >= 50
+      ? props.theme.COLORS.GREEN_DARK
+      : props.theme.COLORS.RED_DARK,
+  position: "absolute",
+  right: 9,
+  top: 9,
+  alignSelf: "center",
+}));

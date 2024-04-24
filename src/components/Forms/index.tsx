@@ -46,7 +46,6 @@ export const Forms = ({
       date.trim().length > 0 &&
       time &&
       time.trim().length > 0 &&
-      isOnDiet &&
       isOnDiet !== null
     ) {
       const id = "_" + Math.random().toString(36).substr(2, 9);
