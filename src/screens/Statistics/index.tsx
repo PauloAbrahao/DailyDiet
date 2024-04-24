@@ -12,10 +12,10 @@ import {
 import {StatisticsProps} from "src/@types";
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {Card} from "@components/Card";
-import {countConsecutiveDietMeals} from "src/commons/helpers/countConsecutiveDietMeals";
-import {countTotalMeals} from "src/commons/helpers/countTotalMeals";
-import {countDietMeals} from "src/commons/helpers/countDietMeals";
-import {countNonDietMeals} from "src/commons/helpers/countNonDietMeals";
+import {countConsecutiveDietMeals} from "@commons/helpers/countConsecutiveDietMeals";
+import {countTotalMeals} from "@commons/helpers/countTotalMeals";
+import {countDietMeals} from "@commons/helpers/countDietMeals";
+import {countNonDietMeals} from "@commons/helpers/countNonDietMeals";
 
 export const Statistics = () => {
   const navigation = useNavigation();

@@ -14,5 +14,7 @@
 ### Techs
 - React Native
 - Typescript
+- Styled Components
 - Async Storage
 - Phosphor-react-native (Icons)
+- Babel-plugin-module-resolver
