@@ -38,10 +38,15 @@ export const Forms = ({
 
   const handleAdd = async () => {
     if (
+      name &&
       name.trim().length > 0 &&
+      description &&
       description.trim().length > 0 &&
+      date &&
       date.trim().length > 0 &&
+      time &&
       time.trim().length > 0 &&
+      isOnDiet &&
       isOnDiet !== null
     ) {
       const id = "_" + Math.random().toString(36).substr(2, 9);

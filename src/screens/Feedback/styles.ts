@@ -1,4 +1,4 @@
-import styled, {css} from "styled-components";
+import styled from "styled-components";
 import {View, Text} from "react-native";
 
 export const Container = styled(View)`

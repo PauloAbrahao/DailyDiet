@@ -2,8 +2,9 @@ import styled, {css} from "styled-components";
 import {Text, TouchableOpacity} from "react-native";
 import {ArrowUpRight} from "phosphor-react-native";
 
-export const Container = styled(TouchableOpacity)`
-  background-color: ${({theme}) => theme.COLORS.GREEN_LIGHT};
+export const Container = styled(TouchableOpacity)<{percentage: number}>`
+  background-color: ${({theme, percentage}) =>
+    percentage >= 50 ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
   width: 100%;
   height: 120px;
   top: 50px;

@@ -25,14 +25,12 @@ export const MealsList = () => {
         (date) => ({
           date: date,
           data: groupedMeals[date],
-    
         })
       );
 
       setMeals(sectionData);
     } catch (error) {
       Alert.alert("Refeições", "Não foi possível carregar suas refeições.");
-      console.log(error);
     }
   }
 

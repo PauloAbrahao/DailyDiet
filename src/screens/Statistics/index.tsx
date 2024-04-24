@@ -12,19 +12,43 @@ import {
 import {StatisticsProps} from "src/@types";
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {Card} from "@components/Card";
+import {countConsecutiveDietMeals} from "src/commons/helpers/countConsecutiveDietMeals";
+import {countTotalMeals} from "src/commons/helpers/countTotalMeals";
+import {countDietMeals} from "src/commons/helpers/countDietMeals";
+import {countNonDietMeals} from "src/commons/helpers/countNonDietMeals";
 
 export const Statistics = () => {
   const navigation = useNavigation();
+  const [consecutiveMeal, setConsecutiveMeal] = React.useState<number>(0);
+  const [totalMeals, setTotalMeals] = React.useState<number>(0);
+  const [inDiet, setInDiet] = React.useState<number>(0);
+  const [offDiet, setOffDiet] = React.useState<number>(0);
   const route = useRoute();
   const {percentage} = route.params as StatisticsProps;
 
+  React.useEffect(() => {
+    const fetchConsecutiveMeals = async () => {
+      const consecutiveMeals = await countConsecutiveDietMeals();
+      const totalMeals = await countTotalMeals();
+      const dietMeals = await countDietMeals();
+      const nonDietMeals = await countNonDietMeals();
+
+      setConsecutiveMeal(consecutiveMeals);
+      setTotalMeals(totalMeals);
+      setInDiet(dietMeals);
+      setOffDiet(nonDietMeals);
+    };
+
+    fetchConsecutiveMeals();
+  }, []);
+
   return (
     <Container>
-      <Header>
+      <Header percentage={percentage}>
         <BackButton onPress={() => navigation.goBack()}>
           <Icon />
         </BackButton>
-        <Percentage>{percentage}</Percentage>
+        <Percentage>{percentage}%</Percentage>
         <Title>das refeições dentro da dieta</Title>
       </Header>
       <Body>
@@ -33,21 +57,25 @@ export const Statistics = () => {
         </Title>
         <Card
           color="GRAY_7"
-          title="22"
+          title={consecutiveMeal.toString()}
           subtitle="melhor sequência de pratos dentro da dieta"
         />
-        <Card color="GRAY_7" title="109" subtitle="refeições registradas" />
+        <Card
+          color="GRAY_7"
+          title={totalMeals.toString()}
+          subtitle="refeições registradas"
+        />
         <Row>
           <Card
             color="GREEN_LIGHT"
-            title="99"
+            title={inDiet.toString()}
             subtitle="refeições dentro da dieta"
             width={48}
             height={120}
           />
           <Card
             color="RED_LIGHT"
-            title="10"
+            title={offDiet.toString()}
             subtitle="refeições fora da dieta"
             width={48}
             height={120}

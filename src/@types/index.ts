@@ -44,7 +44,7 @@ export type MealSection = {
 };
 
 export type StatisticsProps = {
-  percentage: string;
+  percentage: number;
 };
 
 export type FeedbackProps = {
