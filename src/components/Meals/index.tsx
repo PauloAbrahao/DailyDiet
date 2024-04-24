@@ -11,7 +11,7 @@ export const Meals = () => {
       <Title>Refeições</Title>
       <Button
         title="Nova refeição"
-        onPress={() => navigation.navigate("newMeal")}
+        onPress={() => navigation.navigate("newMeal", {})}
       />
     </Container>
   );

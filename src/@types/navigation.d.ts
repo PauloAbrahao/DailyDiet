@@ -5,7 +5,7 @@ export declare global {
     interface RootParamList {
       home: undefined;
       statistics: {
-        percentage: string;
+        percentage: number;
       };
       newMeal: {
         id?: string;

@@ -8,11 +8,12 @@ export const Container = styled(View)`
   background-color: ${({theme}) => theme.COLORS.GREEN_LIGHT};
 `;
 
-export const Header = styled(SafeAreaView)`
+export const Header = styled(SafeAreaView)<{percentage: number}>`
   height: 180px;
   align-items: center;
   justify-content: center;
-  background-color: ${({theme}) => theme.COLORS.GREEN_LIGHT};
+  background-color: ${({theme, percentage}) =>
+    percentage >= 50 ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
   flex-direction: column;
 `;
 
