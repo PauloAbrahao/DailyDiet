@@ -6,9 +6,13 @@
 
 ### See the project...
 <p align="center">
-  <img src="./assets/turmas.png" width="190" hspace="15">
-  <img src="./assets/nova.png" width="190" hspace="15">
-  <img src="./assets/times.png" width="190" hspace="15">
+  <img src="./assets/home.png" width="190" hspace="15">
+  <img src="./assets/statistics.png" width="190" hspace="15">
+  <img src="./assets/creation.png" width="190" hspace="15">
+</br>
+  <img src="./assets/feedback.png" width="190" hspace="15">
+  <img src="./assets/isOnDiet.png" width="190" hspace="15">
+  <img src="./assets/exclusion.png" width="190" hspace="15">
 </p>
 
 ### Techs
